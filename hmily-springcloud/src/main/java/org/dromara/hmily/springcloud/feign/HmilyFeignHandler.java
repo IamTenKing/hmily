@@ -34,6 +34,8 @@ import java.util.Objects;
 
 /**
  * HmilyFeignHandler.
+ * feign的底层原理：通过jdk动态代理
+ *
  *
  * @author xiaoyu
  */

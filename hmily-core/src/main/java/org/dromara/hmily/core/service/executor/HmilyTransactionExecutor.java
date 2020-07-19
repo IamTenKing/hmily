@@ -96,6 +96,7 @@ public class HmilyTransactionExecutor {
         //发布一个异步save事件，通过异步保存到数据库中
         hmilyTransactionEventPublisher.publishEvent(hmilyTransaction, EventTypeEnum.SAVE.getCode());
         //set TccTransactionContext this context transfer remote
+        //保存在事务上下文中
         HmilyTransactionContext context = new HmilyTransactionContext();
         //set action is try
         context.setAction(HmilyActionEnum.TRYING.getCode());
@@ -316,6 +317,7 @@ public class HmilyTransactionExecutor {
         return hmilyParticipants;
     }
 
+    //创建一个HmilyTransaction对象
     private HmilyTransaction buildHmilyTransaction(final ProceedingJoinPoint point, final int role, final String transId) {
         HmilyTransaction hmilyTransaction;
         if (StringUtils.isNoneBlank(transId)) {
@@ -339,11 +341,13 @@ public class HmilyTransactionExecutor {
         String cancelMethodName = hmily.cancelMethod();
         if (StringUtils.isNoneBlank(confirmMethodName)) {
             hmilyTransaction.setConfirmMethod(confirmMethodName);
+            //构建confirm方法
             confirmInvocation = new HmilyInvocation(clazz, confirmMethodName, method.getParameterTypes(), args);
         }
         HmilyInvocation cancelInvocation = null;
         if (StringUtils.isNoneBlank(cancelMethodName)) {
             hmilyTransaction.setCancelMethod(cancelMethodName);
+            //构建cancel方法，为了后续需要可以反射调用
             cancelInvocation = new HmilyInvocation(clazz, cancelMethodName, method.getParameterTypes(), args);
         }
         //将事务id,confirm方法，cancel方法都放入到hmilyParticipant对象中

@@ -62,6 +62,7 @@ public class HmilyFeignConfiguration {
      * @return the hystrix concurrency strategy
      */
     @Bean
+    //满足此属性配置才注入
     @ConditionalOnProperty(name = "feign.hystrix.enabled")
     public HystrixConcurrencyStrategy hystrixConcurrencyStrategy() {
         return new HmilyHystrixConcurrencyStrategy();

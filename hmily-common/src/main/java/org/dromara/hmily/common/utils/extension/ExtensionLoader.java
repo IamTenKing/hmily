@@ -69,10 +69,13 @@ public final class ExtensionLoader<T> {
      * @return the activate extension
      */
     public T getActivateExtension(final String value) {
+        //将该类的全部实现类加载
         ServiceLoader<T> loader = ServiceBootstrap.loadAll(type);
+        //过滤后返回配置文件中配置的实现类
         return StreamSupport.stream(loader.spliterator(), false)
                 .filter(e -> Objects.equals(e.getClass()
                         .getAnnotation(HmilySPI.class).value(), value))
+                //返回第一个，如没有则抛出异常
                 .findFirst().orElseThrow(() -> new HmilyException("Please check your configuration"));
     }
 

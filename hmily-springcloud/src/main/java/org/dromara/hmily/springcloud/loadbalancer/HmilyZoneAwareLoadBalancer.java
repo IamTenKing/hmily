@@ -29,6 +29,8 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
+ *
+ * 自定义负载均衡规则
  * The type Hmily zone aware LoadBalancer.
  *
  * @author xiaoyu

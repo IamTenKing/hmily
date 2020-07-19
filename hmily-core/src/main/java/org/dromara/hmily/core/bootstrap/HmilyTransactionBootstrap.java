@@ -40,6 +40,7 @@ public class HmilyTransactionBootstrap extends HmilyConfig implements Applicatio
 
     private final HmilyInitService hmilyInitService;
 
+    //构造方法注入
     @Autowired
     public HmilyTransactionBootstrap(final HmilyInitService hmilyInitService) {
         this.hmilyInitService = hmilyInitService;
@@ -47,11 +48,14 @@ public class HmilyTransactionBootstrap extends HmilyConfig implements Applicatio
 
     @Override
     public void setApplicationContext(final ApplicationContext applicationContext) throws BeansException {
+        //注入applicationContext
         SpringBeanUtils.getInstance().setCfgContext((ConfigurableApplicationContext) applicationContext);
+        //开始启动流程
         start(this);
     }
 
     private void start(final HmilyConfig hmilyConfig) {
+        //初始化配置
         hmilyInitService.initialization(hmilyConfig);
     }
 }

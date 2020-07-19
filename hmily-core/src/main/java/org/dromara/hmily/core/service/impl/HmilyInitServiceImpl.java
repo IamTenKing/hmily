@@ -63,9 +63,12 @@ public class HmilyInitServiceImpl implements HmilyInitService {
      */
     @Override
     public void initialization(final HmilyConfig hmilyConfig) {
+        //注入一个关闭钩子
         Runtime.getRuntime().addShutdownHook(new Thread(() -> LOGGER.info("hmily shutdown now")));
         try {
             //根据配置文件加载spi支持，默认是kryo序列化算法
+            //根据配置文件中配置的数据源
+            //通过spi实现动态数据源，序列化方式
             loadSpiSupport(hmilyConfig);
             hmilyCoordinatorService.start(hmilyConfig);
         } catch (Exception ex) {
@@ -91,6 +94,7 @@ public class HmilyInitServiceImpl implements HmilyInitService {
 
         repository.setSerializer(serializer);
 
+        //先通过spi动态加载数据源，序列化方式类实例，但是通过spi加载的类没有被ioc容器管理起来，所以需要手动注入到ioc容器中
         SpringBeanUtils.getInstance().registerBean(HmilyCoordinatorRepository.class.getName(), repository);
     }
 }

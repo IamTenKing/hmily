@@ -27,6 +27,7 @@ import org.springframework.stereotype.Component;
  * @author xiaoyu(Myth)
  */
 @Component("hmilyConfig")
+//启动时加载配置文件中配置的属性
 @ConfigurationProperties(prefix = "org.dromara.hmily",
         ignoreInvalidFields = true)
 public class HmilyConfigProperties extends HmilyConfig {

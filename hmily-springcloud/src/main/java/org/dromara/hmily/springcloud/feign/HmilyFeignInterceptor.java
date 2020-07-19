@@ -25,6 +25,8 @@ import org.dromara.hmily.core.mediator.RpcMediator;
 /**
  * HmilyRestTemplateInterceptor.
  *
+ * feign的拦截器
+ *
  * @author xiaoyu
  */
 public class HmilyFeignInterceptor implements RequestInterceptor {

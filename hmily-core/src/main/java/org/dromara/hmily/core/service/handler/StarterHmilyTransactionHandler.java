@@ -90,6 +90,9 @@ public class StarterHmilyTransactionHandler implements HmilyTransactionHandler, 
 
     @Override
     public void onApplicationEvent(final ContextRefreshedEvent event) {
+
+        //监听ContextRefreshedEvent事件的问题就是启动时可以会执行多次，怎么解决，可以增加一个变量判断是否执行过，是的话，跳过即可
+
         //判断是否为发起者角色，是的话启动start disruptor
         if (hmilyConfig.getStarted()) {
             disruptorProviderManage = new DisruptorProviderManage<>(new HmilyConsumerTransactionDataHandler(),

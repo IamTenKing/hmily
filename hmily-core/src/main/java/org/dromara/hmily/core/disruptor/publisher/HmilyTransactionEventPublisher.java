@@ -37,6 +37,8 @@ import java.util.List;
 /**
  * event publisher.
  *
+ * 监听服务启动初始化类
+ *
  * @author xiaoyu(Myth)
  */
 @Component

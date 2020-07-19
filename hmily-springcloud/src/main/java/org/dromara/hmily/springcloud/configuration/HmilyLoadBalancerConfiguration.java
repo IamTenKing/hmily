@@ -31,6 +31,7 @@ import org.springframework.context.annotation.Scope;
  * @author xiaoyu
  */
 @Configuration
+//由此类才配置生效
 @ConditionalOnClass(IRule.class)
 public class HmilyLoadBalancerConfiguration {
 
