@@ -22,6 +22,9 @@ import org.dromara.hmily.common.config.HmilyConfig;
 /**
  * @author xiaoyu
  */
+//@FunctionalInterface，函数式接口@FunctionalInterface
+//所谓的函数式接口，当然首先是一个接口，然后就是在这个接口里面只能有一个抽象方法。
+// 该注解不是必须的，如果一个接口符合"函数式接口"定义，那么加不加该注解都没有影响
 @FunctionalInterface
 public interface HmilyInitService {
 
